@@ -45,14 +45,40 @@ JAWS-UG神戸#10
 髙橋　透
 
 ---
+<style scoped>
+section {
+  justify-content: flex-start;
+}
+</style>
+
+
+![bg left:30% contain](../images/me.jpg)
+
+### 髙橋　透@tttol777
+- Role: Application Engineer
+- Like: Java / AWS
+- Others: 一児の父
+### Works
+- Web: https://about-tttol.link/
+- SpeakerDeck: https://speakerdeck.com/tttol
+
+---
+# 今回のLTの背景
+- 業務で2ヶ月くらい集中してLambdaを使った開発の機会があった
+- 今までなんとなくでLambdaを使ってたが、商用環境でガッツリ使うことで色々わかった
+- **Lambdaを使って感じた辛いところ・注意点を共有します**
+
+---
 
 # 今日話すこと
 
 1. **250MBクォータ** の壁
-2. **SAM or CDK** の選択
+2. **SAM or IaC** の選択
 
-業務でLambdaをしっかり使う機会があり、
-色々と辛かったことを共有します
+---
+
+<!-- _class: title -->
+# 250MBクォータ
 
 ---
 
@@ -124,19 +150,22 @@ Unzipped size must be smaller than 262144000 bytes
 
 ---
 
-# SAM or CDKの選択
+<!-- _class: title -->
+# SAM or IaCの選択
+
+---
+# SAM or IaCの選択
 
 Lambdaのデプロイ方法はいくつかある
 
 | 方法 | 特徴 |
 |---|---|
-| **AWS SAM CLI** | サーバーレス向けに特化。手軽 |
-| **AWS CDK / Terraform** | 王道のIaC。汎用的 |
-| 手動リリース | 論外 |
+| **AWS SAM CLI** | サーバーレス向けに特化cfn |
+| **AWS CDK / Terraform** | 王道のIaC |
 
 ---
 
-# 今回SAMを選んだ理由
+# SAMの採用
 
 - Lambda関数1個のために CDK/Terraform は大掛かり
 - SAMなら `sam build` → `sam deploy` でシンプル
@@ -180,6 +209,11 @@ Lambdaのデプロイ方法はいくつかある
 
 ---
 
-<!-- _class: title -->
+# 余談
+この資料はMarpで作りました
+https://github.com/marp-team/marp-cli
 
+---
+
+<!-- _class: title -->
 # ありがとうございました
