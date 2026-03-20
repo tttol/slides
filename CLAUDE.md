@@ -4,51 +4,87 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-プレゼンテーションスライドを管理するリポジトリ。スライドは[Marp](https://marp.app/)（Markdown Presentation Ecosystem）形式で記述されている。
+A repository for managing presentation slides. Slides are written in [Marp](https://marp.app/) (Markdown Presentation Ecosystem) format.
 
 ## Slide Format
 
-- 各スライドはMarkdownファイル（`.md`）で作成
-- ファイル先頭のYAML front matterでMarpの設定（テーマ、ページネーション、スタイル等）を定義
-- スライド区切りは `---`（水平線）を使用
-- `<!-- _class: title -->` などのHTMLコメントでスライド単位のクラス指定が可能
+- Each slide is created as a Markdown file (`.md`)
+- Marp settings (theme, pagination, styles, etc.) are defined in the YAML front matter at the top of each file
+- Slide separators use `---` (horizontal rule)
+- Per-slide class assignments are possible via HTML comments like `<!-- _class: title -->`
+
+## Common CSS Styles
+This css style must be applied all slides.
+```css
+style: |
+  section {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: linear-gradient(to bottom, #7a9df5, #ffffff);
+  }
+  section.title {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: linear-gradient(rgba(255,255,255,0.80), rgba(255,255,255,0.60)), url('../images/redrock.jpeg');
+    background-size: cover;
+    background-position: center;
+  }
+  section.title h1 {
+    font-size: 2.5em;
+    color: #000;
+  }
+  strong {
+    color: #000;
+  }
+  code {
+    background-color: #e8f0fe;
+    color: #1a73e8;
+  }
+  table {
+    margin: 0 auto;
+  }
+  th {
+    background-color: #d4eeff;
+  }
+```
 
 ## Build / Preview
 
-Marp CLIでスライドのビルド・プレビューが可能:
+Slides can be built and previewed with Marp CLI:
 
 ```bash
-# プレビュー（ブラウザで表示）
+# Preview (display in browser)
 npx @marp-team/marp-cli --preview <markdown-file>
 
-# PDF出力
+# PDF output
 npx @marp-team/marp-cli --pdf <markdown-file>
 
-# HTML出力
+# HTML output
 npx @marp-team/marp-cli <markdown-file>
 ```
 
-VS Code拡張「Marp for VS Code」でもプレビュー可能。
+Preview is also available via the "Marp for VS Code" extension.
 
 ## Repository Structure
 
-各プレゼンテーションはトピック名のディレクトリに格納される（例: `ここが辛いよLambda/`）。
-共通画像は `images/` ディレクトリに格納し、スライドからは相対パス（`../images/`）で参照する。
+Each presentation is stored in a directory named after its topic (e.g., `ここが辛いよLambda/`).
+Shared images are stored in the `images/` directory and referenced from slides using relative paths (`../images/`).
 
 ## Marp Tips
 
-### 画像サイズの指定
-インライン画像のサイズは alt text 内で指定する:
-- 高さ指定: `![h:400](image.png)`
-- 幅指定: `![w:600](image.png)`
+### Specifying Image Size
+Inline image sizes are specified within the alt text:
+- Height: `![h:400](image.png)`
+- Width: `![w:600](image.png)`
 
-### 背景画像
-- グローバル背景: front matter の `style` セクション内で `background-image` を指定
-- スライド単位の背景: `![bg](image.png)` 構文を使用
-- 左右分割レイアウト: `![bg left:30%](image.png)` で左側に画像、右側にテキスト
+### Background Images
+- Global background: specify `background-image` in the `style` section of the front matter
+- Per-slide background: use the `![bg](image.png)` syntax
+- Split layout: `![bg left:30%](image.png)` places the image on the left and text on the right
 
-### スライド単位のスタイル
-特定スライドのみにCSSを適用したい場合は `<style scoped>` を使用する:
+### Per-Slide Styles
+To apply CSS to a specific slide only, use `<style scoped>`:
 ```markdown
 <style scoped>
 section {
@@ -56,4 +92,4 @@ section {
 }
 </style>
 ```
-グローバルの `style` セクションより詳細度が高く、テーマのデフォルトスタイルを確実にオーバーライドできる。
+This has higher specificity than the global `style` section and reliably overrides the theme's default styles.
