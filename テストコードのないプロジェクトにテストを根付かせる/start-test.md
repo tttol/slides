@@ -69,6 +69,69 @@ style: |
   tr:nth-child(even) td {
     background-color: #fafafa;
   }
+  .point-box {
+    display: flex;
+    align-items: center;
+    padding: 28px 36px;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    background-color: #f8fafc;
+    margin: 12px 0;
+    gap: 28px;
+  }
+  .point-box-blue {
+    background-color: #eff6ff;
+    border-color: #bfdbfe;
+  }
+  .point-box-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    flex-shrink: 0;
+    background-color: #e2e8f0;
+  }
+  .point-box-icon-blue {
+    background-color: #bfdbfe;
+  }
+  .point-box p {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+  }
+  .point-box ul {
+    margin: 0;
+    padding-left: 28px;
+    flex: 1;
+  }
+  .point-box li {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 4px 0;
+  }
+  .card {
+    background-color: #ffffff;
+    padding: 36px 44px;
+    border-radius: 24px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border: 1px solid #f1f5f9;
+  }
+  .card-subtitle {
+    border-bottom: 2px dashed #e2e8f0;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+  }
+  .card-subtitle p {
+    font-size: 24px;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 0.05em;
+  }
   pre {
     background-color: #1e1e1e;
     border-radius: 12px;
@@ -103,7 +166,7 @@ style: |
   }
   pre code {
     background-color: transparent;
-    color: #d4d4d4;
+    color: #ce9178;
     font-family: 'Fira Code', monospace;
     font-size: 18px;
     line-height: 1.6;
@@ -117,54 +180,37 @@ style: |
   .hljs-string { color: #98c379; }
   .hljs-number { color: #d19a66; }
   .hljs-built_in { color: #e5c07b; }
+  .hljs-variable { color: #e06c75; }
+  .hljs-variable.language_ { color: #e5c07b; }
+  .hljs-params { color: #abb2bf; }
+  .hljs-property { color: #e06c75; }
+  .hljs-attr { color: #d19a66; }
+  .hljs-type { color: #e5c07b; }
   .callout {
     border-radius: 8px;
     padding: 12px 18px 14px;
     margin: 14px 0;
     border-left: 5px solid;
   }
-  .callout::before {
-    display: block;
-    font-weight: 700;
-    font-size: 0.8em;
-    margin-bottom: 8px;
-    letter-spacing: 0.05em;
-  }
   .callout-info {
     background-color: #dbeafe;
     border-color: #3b82f6;
     color: #1e3a5f;
-  }
-  .callout-info::before {
-    content: 'ℹ';
-    color: #2563eb;
   }
   .callout-warn {
     background-color: #fef3c7;
     border-color: #f59e0b;
     color: #78350f;
   }
-  .callout-warn::before {
-    content: '⚠';
-    color: #d97706;
-  }
-  .callout-erro {
+  .callout-error {
     background-color: #fee2e2;
     border-color: #ef4444;
     color: #7f1d1d;
-  }
-  .callout-erro::before {
-    content: '✖';
-    color: #dc2626;
   }
   .callout-important {
     background-color: #ede9fe;
     border-color: #8b5cf6;
     color: #3b0764;
-  }
-  .callout-important::before {
-    content: '★';
-    color: #7c3aed;
   }
 ---
 
@@ -186,10 +232,10 @@ section {
 ![bg left:30% contain](../images/me.jpg)
 
 ### 髙橋　透@tttol777
- 🧑‍💻**Role**: Backend Engineer
- ❤️**Like**: Java, AWS
- 🗣️**Community**: JAWS-UG, AWS CBs
- 👶**Others**: 一児の父
+ **Role**: Backend Engineer
+ **Like**: Java, AWS
+ **Community**: JAWS-UG, AWS CBs
+ **Others**: 一児の父
 
 ### Works
  🌐**Web**: https://about-tttol.link/
@@ -209,9 +255,10 @@ section {
 
 を共有します。
 
-```
-※本セッションで言及するテストとはJUnitなどのテストフレームワークによって実装されるテストコードを指しています。
-```
+<div class="point-box">
+    <div class="point-box-icon">🗣️</div>
+    <p>本セッションで言及するテストとはJUnitなどのテストフレームワークによって実装されるテストコードを指しています。</p>
+</div>
 
 ---
 
@@ -235,25 +282,35 @@ section {
 
 # まずコードベースを読む
 
-git clone してテストコードの実装状況を確認するところから始める。
+<div class="point-box">
+    <div class="point-box-icon">🗣️</div>
+    <p>git clone してテストコードの実装状況を確認するところから始める。</p>
+</div>
 
 ---
 
 # テストがゼロの場合
-- コードベースからわかることはあまりない
-- マニュアルテストの試験書など他の試験をあたる
+
+<div class="point-box">
+    <div class="point-box-icon">😔</div>
+    <ul>
+        <li>コードベースからわかることはあまりない</li>
+        <li>マニュアルテストの試験書など他の資料をあたる</li>
+    </ul>
+</div>
 
 ---
 
-# テストがある場合の確認ポイント
+# テストがある場合
 
-テストコードはあるが、正しく機能しているかを確認する。
-
-<div class="callout callout-info">
-一部の機能にだけテストがある  <br/>
-テストを実行するとエラーになる
-it Testはあるが Integration Testはない
-テストはあるがCIで自動実行されていない
+<div class="point-box">
+    <div class="point-box-icon">🤔</div>
+    <ul>
+        <li>一部の機能にだけテストがある</li>
+        <li>テストを実行するとエラーになる</li>
+        <li>it Testはあるが Integration Testはない</li>
+        <li>テストはあるがCIで自動実行されていない</li>
+    </ul>
 </div>
 
 ---
@@ -286,7 +343,9 @@ it Testはあるが Integration Testはない
 
 <br/>
 
-※ただし、テストが**適切に**実装されている場合に限る
+<div class="callout callout-warn">
+ただしテストが「適切に」実装されている場合に限る
+</div>
 
 ---
 
@@ -296,14 +355,13 @@ it Testはあるが Integration Testはない
 
 ---
 
-# 提案の前に：既存コードベースへの敬意
+  <div class="point-box">
+  <div class="point-box-icon point-box-icon-blue">🗣️</div>
+  <p>まず既存コードベースに敬意を払う</p>
+  </div>
 
 「テストを書きましょう！」だけでは動かない。
 提案の立ち回り方が最も重要。
-
-<br>
-
-まず大前提として**既存コードベースに敬意を払う**
 
 ---
 
@@ -341,15 +399,16 @@ it Testはあるが Integration Testはない
 
 既存のテストが正しく動いているかを確認する。
 
-<br>
-
-チェックポイント：
 1. テスト実行結果は OK / NG?
 2. OKだとしてプロダクトコードを正しく検証できているか
 
 <br>
 
-あまりにひどいテストは思い切って削除するのも一つの選択肢
+  <div class="point-box">
+  <div class="point-box-icon point-box-icon-blue">🗣️</div>
+  <p>ひどいテストは思い切って削除するのも一つの選択肢</p>
+  </div>
+
 
 ---
 
@@ -398,10 +457,12 @@ void index_古典学派() throws Exception {
 ```
 
 ---
-
-つまり古典学派とは・・・
-- モックを極力使わない
-- 振る舞いに対してテストを書く
+<div class="point-box point-box-blue">
+    <div class="point-box-icon point-box-icon-blue">📝</div>
+    つまり古典学派とは・・・<br/>
+    ・モックを極力使わない<br/>
+    ・振る舞いに対してテストを書く<br/>
+</div>
 
 ---
 
@@ -423,16 +484,21 @@ void index_ロンドン学派() {
 
 
 ---
-つまりロンドン学派とは・・・
-- 依存クラスにはモックを使う
-- 一つの関数に対する純粋なUnit Test
+<div class="point-box point-box-blue">
+    <div class="point-box-icon point-box-icon-blue">🇬🇧</div>
+    つまりロンドン学派とは・・・<br/>
+    ・依存クラスにはモックを使う<br/>
+    ・一つの関数に対する純粋なUnit Test
+</div>
 
 ---
 # 余談：どこまでモックにするか
 
-```
+<div class="callout callout-important">
 「管理外の依存だけモックにする。管理下の依存は本物を使う。」
-```
+</div>
+
+--- 
 
 管理下：
 - 依存するクラス（HogeService）
@@ -447,9 +513,12 @@ void index_ロンドン学派() {
 ---
 
 # 余談：カバレッジは100%を目指さない
-90%前後で十分。
-カバレッジは **「自分達が認識しているケースの範囲内での網羅率」** でしかない
-認知してないケースを独力で認知することはできない
+<div class="callout callout-important">
+    90%前後で十分。<br/>
+    カバレッジは 「自分達が認識しているケースの範囲内での網羅率」 でしかない<br/>
+    認知してないケースを独力で認知することはできない<br/>
+</div>
+
 
 ---
 
@@ -458,19 +527,13 @@ void index_ロンドン学派() {
 
 ---
 
-# 自動実行されないテストはいつか必ず腐る!
-
-# テストコードとCIはセットで考える!
+<div class="point-box point-box-blue">
+    <div class="point-box-icon point-box-icon-blue">🚨</div>
+    <p>自動実行されないテストはいつか必ず腐る!<br/>
+    テストコードとCIはセットで考える!</p>
+</div>
 
 ---
-
-<style scoped>
-section {
-  justify-content: flex-start;
-}
-</style>
-
-![bg right:30% contain](../images/awake.pmg)
 
 # CIによるテストの自動実行は必須
 
@@ -479,16 +542,20 @@ section {
 - AWS CodeBuild
 - Jenkins
 
-利用するツールはなんでもいい
-とにかく自動化だ！
+<div class="point-box point-box-blue">
+    <div class="point-box-icon point-box-icon-blue">🗣️</div>
+    <p>利用するツールはなんでもいい<br/>とにかく自動化だ！</p>
+</div>
 
 
 ---
 
-失敗を無視できない環境を作ることが重要
-
-- CIが通っていないPRをマージさせない設定も可能
-- Slack通知でテスト失敗を即時共有
+<div class="point-box point-box-blue">
+    <div class="point-box-icon point-box-icon-blue">⛔️</div>
+    失敗を無視できない環境を作ることが重要<br/>
+    - CIが通っていないPRをマージさせない設定も可能<br/>
+    - Slack通知でテスト失敗を即時共有
+</div>
 
 ---
 
@@ -535,7 +602,13 @@ section {
 やむを得ない場合は許容するが条件をつける：
 - テスト実装のタスクをチケットなどで必ず管理する
 - テスト実装の必要性が低い場合はそのことをソースコメントやPRなどに明記しておく
-
+  <div class="point-box">
+    <div class="point-box-icon">📋</div>
+    <ul>
+      <li>テスト実装のタスクをチケットなどで必ず管理する</li>
+      <li>テスト実装の必要性が低い場合はソースコメントやPRなどに明記する</li>
+    </ul>
+  </div>
 
 ---
 

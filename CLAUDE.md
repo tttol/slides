@@ -83,6 +83,69 @@ style: |
   tr:nth-child(even) td {
     background-color: #fafafa;
   }
+  .point-box {
+    display: flex;
+    align-items: center;
+    padding: 28px 36px;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    background-color: #f8fafc;
+    margin: 12px 0;
+    gap: 28px;
+  }
+  .point-box-blue {
+    background-color: #eff6ff;
+    border-color: #bfdbfe;
+  }
+  .point-box-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    flex-shrink: 0;
+    background-color: #e2e8f0;
+  }
+  .point-box-icon-blue {
+    background-color: #bfdbfe;
+  }
+  .point-box p {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+  }
+  .point-box ul {
+    margin: 0;
+    padding-left: 28px;
+    flex: 1;
+  }
+  .point-box li {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 4px 0;
+  }
+  .card {
+    background-color: #ffffff;
+    padding: 36px 44px;
+    border-radius: 24px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border: 1px solid #f1f5f9;
+  }
+  .card-subtitle {
+    border-bottom: 2px dashed #e2e8f0;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+  }
+  .card-subtitle p {
+    font-size: 24px;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 0.05em;
+  }
   pre {
     background-color: #1e1e1e;
     border-radius: 12px;
@@ -117,7 +180,7 @@ style: |
   }
   pre code {
     background-color: transparent;
-    color: #d4d4d4;
+    color: #ce9178;
     font-family: 'Fira Code', monospace;
     font-size: 18px;
     line-height: 1.6;
@@ -131,54 +194,37 @@ style: |
   .hljs-string { color: #98c379; }
   .hljs-number { color: #d19a66; }
   .hljs-built_in { color: #e5c07b; }
+  .hljs-variable { color: #e06c75; }
+  .hljs-variable.language_ { color: #e5c07b; }
+  .hljs-params { color: #abb2bf; }
+  .hljs-property { color: #e06c75; }
+  .hljs-attr { color: #d19a66; }
+  .hljs-type { color: #e5c07b; }
   .callout {
     border-radius: 8px;
     padding: 12px 18px 14px;
     margin: 14px 0;
     border-left: 5px solid;
   }
-  .callout::before {
-    display: block;
-    font-weight: 700;
-    font-size: 0.8em;
-    margin-bottom: 8px;
-    letter-spacing: 0.05em;
-  }
   .callout-info {
     background-color: #dbeafe;
     border-color: #3b82f6;
     color: #1e3a5f;
-  }
-  .callout-info::before {
-    content: 'ℹ  INFO';
-    color: #2563eb;
   }
   .callout-warn {
     background-color: #fef3c7;
     border-color: #f59e0b;
     color: #78350f;
   }
-  .callout-warn::before {
-    content: '⚠  WARN';
-    color: #d97706;
-  }
   .callout-erro {
     background-color: #fee2e2;
     border-color: #ef4444;
     color: #7f1d1d;
   }
-  .callout-erro::before {
-    content: '✖  ERRO';
-    color: #dc2626;
-  }
   .callout-important {
     background-color: #ede9fe;
     border-color: #8b5cf6;
     color: #3b0764;
-  }
-  .callout-important::before {
-    content: '★  IMPORTANT';
-    color: #7c3aed;
   }
 ```
 
@@ -226,6 +272,42 @@ section {
 </style>
 ```
 This has higher specificity than the global `style` section and reliably overrides the theme's default styles.
+
+### Card Container
+Use `.card` for a white container box with shadow. Use `.card-subtitle` inside for a dashed-bottom-border subtitle row. Combine with `.point-box` for items inside.
+
+```html
+<div class="card">
+<div class="card-subtitle">
+<p>やむを得ない場合は許容するが条件をつける：</p>
+</div>
+<div class="point-box">
+<div class="point-box-icon point-box-icon-blue">🎫</div>
+<p>テスト実装のタスクをチケットなどで必ず管理する</p>
+</div>
+<div class="point-box">
+<div class="point-box-icon">💬</div>
+<p>テスト実装の必要性が低い場合はソースコメントやPRなどに明記する</p>
+</div>
+</div>
+```
+
+### Point Boxes
+Use `.point-box` for card-style highlighted boxes with an optional circular icon.
+Color variants: default (gray), `.point-box-blue` (blue)
+Icon variants: `.point-box-icon` (gray circle), `.point-box-icon-blue` (blue circle)
+
+```html
+<div class="point-box">
+<div class="point-box-icon">💻</div>
+<p>コードベースからわかることはあまりない</p>
+</div>
+
+<div class="point-box point-box-blue">
+<div class="point-box-icon point-box-icon-blue">📝</div>
+<p>マニュアルテストの試験書など他の試験をあたる</p>
+</div>
+```
 
 ### Callout Blocks
 Use `<div>` with callout classes to display GitHub-style callout blocks.
