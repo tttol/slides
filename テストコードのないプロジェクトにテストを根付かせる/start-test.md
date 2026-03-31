@@ -427,6 +427,7 @@ public class SomeController {
 
     private final HogeService hogeService;
 
+    @GetMapping("/")
     public ResponseEntity<Void> index() {
         // コントローラから3つのサービスメソッドを呼び出す
         hogeService.methodA();
@@ -452,7 +453,7 @@ void index_古典学派() throws Exception {
     // DBレコードチェック
     var expected = ...
     var actual = someRepository.findById(...);
-    assertEquals(actual, expected);
+    assertEquals(expected, actual);
 }
 ```
 
@@ -470,6 +471,7 @@ void index_古典学派() throws Exception {
 対照的な派閥としてロンドン学派がある
 
 ```java
+@Test
 void index_ロンドン学派() {
     // GIVEN
     var mockService = mock(HogeService.class);
