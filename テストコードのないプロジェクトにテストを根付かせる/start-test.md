@@ -490,7 +490,7 @@ void index_ロンドン学派() {
     <div class="point-box-icon point-box-icon-blue">🇬🇧</div>
     つまりロンドン学派とは・・・<br/>
     ・依存クラスにはモックを使う<br/>
-    ・一つの関数に対する純粋なUnit Test
+    ・依存を隔離した単体テスト
 </div>
 
 ---
@@ -516,7 +516,7 @@ void index_ロンドン学派() {
 
 # 余談：カバレッジは100%を目指さない
 <div class="callout callout-important">
-    90%前後で十分。<br/>
+    目安として80〜90%程度で十分。<br/>
     カバレッジは 「自分達が認識しているケースの範囲内での網羅率」 でしかない<br/>
     認知してないケースを独力で認知することはできない<br/>
 </div>
