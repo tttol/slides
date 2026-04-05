@@ -235,7 +235,7 @@ section {
  **Role**: Backend Engineer
  **Like**: Java, AWS
  **Community**: JAWS-UG, AWS CBs
- **SpeakerDeck**: https://speakerdeck.com/tttol
+ **Web**: https://about-tttol.link/
  **Others**: 一児の父
 
 ---
@@ -277,28 +277,7 @@ section {
 
 ---
 
-# まずコードベースを読む
-
-<div class="point-box">
-    <div class="point-box-icon">🗣️</div>
-    <p>git clone してテストコードの実装状況を確認するところから始める。</p>
-</div>
-
----
-
-# テストがゼロの場合
-
-<div class="point-box">
-    <div class="point-box-icon">😔</div>
-    <ul>
-        <li>コードベースからわかることはあまりない</li>
-        <li>マニュアルテストの試験書など他の資料をあたる</li>
-    </ul>
-</div>
-
----
-
-# テストがある場合
+## よくあるケース
 
 <div class="point-box">
     <div class="point-box-icon">🤔</div>
@@ -311,25 +290,11 @@ section {
 </div>
 
 ---
-
 <!-- _class: title -->
 
 # 2. テストがない/少ない原因
 
 ---
-
-# よくある理由
-
-「テストを書く時間がない」
-「テストを書く必要性がわからない」
-
-<br/>
-
-→ テストがあることの具体的なメリットを伝える必要がある
-
----
-
-# テストがあることのメリット
 
 | メリット | 説明 |
 |---|---|
@@ -337,12 +302,6 @@ section {
 | リファクタの安心感 | テストがあればコードを大胆に改善できる |
 | マニュアルテストが自動テストへ | 作業が増えるのではなく置き換わる |
 | 開発リードタイム短縮 | 「速く開発するためにテストを書く」という感覚 |
-
-<br/>
-
-<div class="callout callout-warn">
-ただしテストが「適切に」実装されている場合に限る
-</div>
 
 ---
 
@@ -352,63 +311,26 @@ section {
 
 ---
 
-  <div class="point-box">
-  <div class="point-box-icon point-box-icon-blue">🗣️</div>
-  <p>まず既存コードベースに敬意を払う</p>
-  </div>
+<div class="point-box">
+    <div class="point-box-icon point-box-icon-blue">🗣️</div>
+    <p>まず既存コードベースに敬意を払う</p>
+</div>
 
 「テストを書きましょう！」だけでは動かない。
 提案の立ち回り方が最も重要。
 
----
-
-もちろん敬意を払うだけではチームは動かない。具体的なメリットも同時に伝える。
-※再掲↓
-
-> | メリット | 説明 |
-> |---|---|
-> | デグレ検知 | 意図しない影響範囲の変更を早期発見 |
-> | リファクタの安心感 | テストがあればコードを大胆に改善できる |
-> | マニュアルテストが自動テストへ | 作業が増えるのではなく置き換わる |
-> | 開発リードタイム短縮 | 「速く開発するためにテストを書く」という感覚 |
-
-<br/> 
 
 ---
-
-
 <!-- _class: title -->
-
 # 4. テストを実装する
 
 ---
 
 **① 最初から全機能のテストを書こうとしない**
-- ハッピーパス（ド正常系）だけに絞る
-- 「完璧なテスト」より「動くテストが1本ある」状態を目指す
 
 **② テストの実装は自分もやる。むしろ自分がやる。**
-- 「実装してください」と言うだけでは弱い
-- 自ら実装して効果を確かめて見せる
----
-
-# 既存テストがある場合
-
-既存のテストが正しく動いているかを確認する。
-
-1. テスト実行結果は OK / NG?
-2. OKだとしてプロダクトコードを正しく検証できているか
-
-<br>
-
-  <div class="point-box">
-  <div class="point-box-icon point-box-icon-blue">🗣️</div>
-  <p>ひどいテストは思い切って削除するのも一つの選択肢</p>
-  </div>
-
 
 ---
-
 
 <!-- _class: title -->
 # 古典学派 / ロンドン学派
@@ -487,31 +409,32 @@ void index_ロンドン学派() {
     <div class="point-box-icon point-box-icon-blue">🇬🇧</div>
     つまりロンドン学派とは・・・<br/>
     ・依存クラスにはモックを使う<br/>
-    ・依存を隔離した単体テスト
+    ・クラスに対してテストを書く
 </div>
 
 ---
-# 余談：どこまでモックにするか
+<style scoped>
+table th:nth-child(1), table td:nth-child(1) { width: 20%; }
+table th:nth-child(2), table td:nth-child(2) { width: 40%; }
+table th:nth-child(3), table td:nth-child(3) { width: 40%; }
+</style>
+
+|  | 古典学派 | ロンドン学派 |
+|---|---|---|
+|**単体の意味**|テストケース|クラス|
+|**メリット**| クラス横断で振る舞いを検証可能| クラス単位で検証可能|
+|**デメリット**| テスト失敗時の調査負荷| 大量のモックにまみれがち|
+
+---
+## 余談：古典学派どこまでモックを使うか
 
 <div class="callout callout-important">
 「管理外の依存だけモックにする。管理下の依存は本物を使う。」
 </div>
 
---- 
-
-管理下：
-- 依存するクラス（HogeService）
-- DBのRepositoryクラス・Mapperクラス
-
-管理外：
-- 外部API
-- AWS等のクラウドサービス（S3、SSM等）
-    - localstackを使っても良いが🤔
-- Kafka等のメッセージングサービス
-
 ---
 
-# 余談：カバレッジは100%を目指さない
+## 余談：カバレッジは100%を目指さない
 <div class="callout callout-important">
     目安として80〜90%程度で十分。<br/>
     カバレッジは 「自分達が認識しているケースの範囲内での網羅率」 でしかない<br/>
@@ -520,40 +443,20 @@ void index_ロンドン学派() {
 
 
 ---
-
 <!-- _class: title -->
 # 5. CIによる自動化
 
 ---
 
-<div class="point-box point-box-blue">
-    <div class="point-box-icon point-box-icon-blue">🚨</div>
-    <p>自動実行されないテストはいつか必ず腐る!<br/>
-    テストコードとCIはセットで考える!</p>
-</div>
+<!-- <div class="point-box point-box-blue"> -->
+<!--     <div class="point-box-icon point-box-icon-blue">🚨</div> -->
+<!--     <p>自動実行されないテストはいつか必ず腐る!<br/> -->
+<!--     テストコードとCIはセットで考える!</p> -->
+<!-- </div> -->
 
----
-
-# CIによるテストの自動実行は必須
-
-- GitHub Actions
-- GitLab CI
-- AWS CodeBuild
-- Jenkins
-
-<div class="point-box point-box-blue">
-    <div class="point-box-icon point-box-icon-blue">🗣️</div>
-    <p>利用するツールはなんでもいい<br/>とにかく自動化だ！</p>
-</div>
-
-
----
-
-<div class="point-box point-box-blue">
-    <div class="point-box-icon point-box-icon-blue">⛔️</div>
-    失敗を無視できない環境を作ることが重要<br/>
-    - CIが通っていないPRをマージさせない設定も可能<br/>
-    - Slack通知でテスト失敗を即時共有
+<div class="callout callout-error">
+    <b>自動実行されないテストはいつか必ず腐る!<br/>
+    テストコードとCIはセットで考える!</b><br/>
 </div>
 
 ---
@@ -564,50 +467,10 @@ void index_ロンドン学派() {
 
 ---
 
-# 「テストがあってよかった！」体験を作る
-
-大きなものでなくていい
-テストを正しく実装していればそのうち訪れる
-
-具体例：
-- 機能改修時にデグレに気づくことができた
-- マニュアルテストの対応コストが減った
-
----
-
-成功体験をメンバーが実感することで：
-- テスト実装へのモチベーションが高まる
-- テストを書くことが文化になっていく
-
-この体験が「根付かせる」ための最大の推進力になる。
-
----
-
 <!-- _class: title -->
 # 7. テストを書く習慣が
 # つくまで見守る
 
----
-
-  <div class="point-box">
-    <div class="point-box-icon">🚨</div>
-    習慣が浸透するまで見守る ＝ テストをサボるメンバーを指摘する<br/>
-    「時間がないのでテストは後で書きます」←書かない
-  </div>
-
----
-
-忙しさはテストをサボる理由にはならない
-**無条件に許容するとまたテストのないプロジェクトに戻る**
-
-やむを得ない場合は許容するが条件をつける：
-  <div class="point-box">
-    <div class="point-box-icon">📋</div>
-    <ul>
-      <li>テスト実装のタスクをチケットなどで必ず管理する</li>
-      <li>テスト実装の必要性が低い場合はソースコメントやPRなどに明記する</li>
-    </ul>
-  </div>
 
 ---
 
@@ -628,7 +491,7 @@ void index_ロンドン学派() {
 
 ---
 
-# これだけ覚えて帰ってください
+# TL;DR これだけ覚えて帰ってください
 
   <div class="point-box">
     <div class="point-box-icon">🫡</div>
