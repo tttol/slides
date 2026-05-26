@@ -296,12 +296,22 @@ section {
 
 ---
 
-| メリット | 説明 |
-|---|---|
-| デグレ検知 | 意図しない影響範囲の変更を早期発見 |
-| リファクタの安心感 | テストがあればコードを大胆に改善できる |
-| マニュアルテストが自動テストへ | 作業が増えるのではなく置き換わる |
-| 開発リードタイム短縮 | 「速く開発するためにテストを書く」という感覚 |
+## テストを書くという発想がない？
+## or
+## テストを書きたいけど理由があって書いてない？
+
+---
+
+## 「早く開発するためにテストを書く」という感覚を持つ
+
+<div class="point-box">
+    <div class="point-box-icon">🤔</div>
+    <ul>
+        <li>回帰バグの早期検知</li>
+        <li>リファクタ時の安心感</li>
+        <li>マニュアルテストが自動テストへ</li>
+    </ul>
+</div>
 
 ---
 
@@ -330,107 +340,7 @@ section {
 
 **② テストの実装は自分もやる。むしろ自分がやる。**
 
----
-
 <!-- _class: title -->
-# 古典学派 / ロンドン学派
-
----
-
-テスト対象のコントローラ：
-
-```java
-@RestController
-@RequiredArgsConstructor
-public class SomeController {
-
-    private final HogeService hogeService;
-
-    @GetMapping("/")
-    public ResponseEntity<Void> index() {
-        // コントローラから3つのサービスメソッドを呼び出す
-        hogeService.methodA();
-        hogeService.methodB();
-        hogeService.methodC();
-        return ResponseEntity.ok().build();
-    }
-}
-```
-
----
-テストコード：
-```java
-@Test
-void index_古典学派() throws Exception {
-    // GIVEN: テスト用DBにデータを準備
-    someRepository.insert(...);
-    // WHEN / THEN
-    mockMvc
-        .perform(get("/"))
-        .andExpect(status().isOk());
-
-    // DBレコードチェック
-    var expected = ...
-    var actual = someRepository.findById(...);
-    assertEquals(expected, actual);
-}
-```
-
----
-<div class="point-box point-box-blue">
-    <div class="point-box-icon point-box-icon-blue">📝</div>
-    つまり古典学派とは・・・<br/>
-    ・モックを極力使わない<br/>
-    ・振る舞いに対してテストを書く<br/>
-</div>
-
----
-
-# ロンドン学派
-対照的な派閥としてロンドン学派がある
-
-```java
-@Test
-void index_ロンドン学派() {
-    // GIVEN
-    var mockService = mock(HogeService.class);
-    // WHEN
-    new SomeController(mockService).index();
-    // THEN
-    verify(mockService).methodA();
-    verify(mockService).methodB();
-    verify(mockService).methodC();
-}
-```
-
-
----
-<div class="point-box point-box-blue">
-    <div class="point-box-icon point-box-icon-blue">🇬🇧</div>
-    つまりロンドン学派とは・・・<br/>
-    ・依存クラスにはモックを使う<br/>
-    ・クラスに対してテストを書く
-</div>
-
----
-<style scoped>
-table th:nth-child(1), table td:nth-child(1) { width: 20%; }
-table th:nth-child(2), table td:nth-child(2) { width: 40%; }
-table th:nth-child(3), table td:nth-child(3) { width: 40%; }
-</style>
-
-|  | 古典学派 | ロンドン学派 |
-|---|---|---|
-|**単体の意味**|テストケース|クラス|
-|**メリット**| クラス横断で振る舞いを検証可能| クラス単位で検証可能|
-|**デメリット**| テスト失敗時の調査負荷| 大量のモックにまみれがち|
-
----
-## 余談：古典学派どこまでモックを使うか
-
-<div class="callout callout-important">
-「管理外の依存だけモックにする。管理下の依存は本物を使う。」
-</div>
 
 ---
 
@@ -447,12 +357,6 @@ table th:nth-child(3), table td:nth-child(3) { width: 40%; }
 # 5. CIによる自動化
 
 ---
-
-<!-- <div class="point-box point-box-blue"> -->
-<!--     <div class="point-box-icon point-box-icon-blue">🚨</div> -->
-<!--     <p>自動実行されないテストはいつか必ず腐る!<br/> -->
-<!--     テストコードとCIはセットで考える!</p> -->
-<!-- </div> -->
 
 <div class="callout callout-error">
     <b>自動実行されないテストはいつか必ず腐る!<br/>
