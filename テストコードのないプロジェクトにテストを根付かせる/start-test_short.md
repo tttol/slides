@@ -114,6 +114,10 @@ style: |
     color: #1e293b;
     margin: 4px 0;
   }
+  .qr-code {
+    display: block;
+    margin: 0 auto;
+  }
   .card {
     background-color: #ffffff;
     padding: 36px 44px;
@@ -254,6 +258,10 @@ section {
     <div class="point-box-icon">🗣️</div>
     <p>本セッションで言及するテストとはJUnitなどのテストフレームワークによって実装されるテストコードを指しています。</p>
 </div>
+
+--- 
+
+<img class="qr-code" src="../images/qrcode_speakerdeck.com.png" alt="qr">
 
 ---
 
