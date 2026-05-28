@@ -234,8 +234,6 @@ section {
 ### 髙橋　透@tttol777
  **Role**: Backend Engineer
  **Like**: Java, AWS
- **Community**: JAWS-UG, AWS CBs
- **Web**: https://about-tttol.link/
  **Others**: 一児の父
 
 ---
@@ -268,6 +266,18 @@ section {
 5. CIによる自動化
 6. 小さな成功体験を作る
 7. テストを書く習慣がつくまで見守る
+
+---
+
+# アジェンダ
+
+1. **3分**：現状分析
+2. **10分**：テストがない/少ない原因
+3. **10分**：テスト強化を提案する
+4. **10分**：テストを実装する
+5. **3分**：CIによる自動化
+6. **3分**：小さな成功体験を作る
+7. **3分**：テストを書く習慣がつくまで見守る
 
 ---
 
@@ -340,7 +350,6 @@ section {
 
 **② テストの実装は自分もやる。むしろ自分がやる。**
 
-<!-- _class: title -->
 
 ---
 
@@ -403,7 +412,7 @@ section {
   </div>
 
   <div class="point-box">
-    <div class="point-box-icon">💪</div>
+   <div class="point-box-icon">💪</div>
     <p>実装は自分もやる</p>
   </div>
 
