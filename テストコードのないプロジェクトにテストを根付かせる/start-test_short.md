@@ -117,6 +117,10 @@ style: |
   .qr-code {
     display: block;
     margin: 0 auto;
+    width: 520px;
+  }
+  .event-hashtag {
+    font-size: 96px;
   }
   .card {
     background-color: #ffffff;
@@ -262,6 +266,10 @@ section {
 --- 
 
 <img class="qr-code" src="../images/qrcode_speakerdeck.com.png" alt="qr">
+
+---
+
+<h1 class="event-hashtag">#jjug_ccc_cd</h1>
 
 ---
 
