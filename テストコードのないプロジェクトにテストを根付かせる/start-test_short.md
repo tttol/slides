@@ -269,7 +269,7 @@ section {
 
 ---
 
-<h1 class="event-hashtag">#jjug_ccc_cd</h1>
+<h1 class="event-hashtag">#jjug_ccc_c</h1>
 
 ---
 
